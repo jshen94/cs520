@@ -2,27 +2,28 @@
 
 public class Model {
 	private int turnCounter;
-	private boolean player;
-	private boolean haveWinner;
+	private boolean player; //true is X, false is O
+	private boolean gameEnded;
 	private Board board;
 	
 
 	public Model() {
+		player = true;
 		turnCounter = 0;
-		haveWinner = false;
+		gameEnded = false;
 		board = new Board();
 		
 	}
 	
 	public boolean checkBoard(int x, int y) {
 		if(turnCounter >=9 ) {
-			haveWinner = true;
+			gameEnded = true;
 		}
 		else {
-			board.checkWinner(x,y);
+			gameEnded = board.checkWinner(x,y);
 		}
 		
-		return haveWinner;
+		return gameEnded;
 	}
 	
 	public int getTurnCounter() {
@@ -54,12 +55,12 @@ public class Model {
 		}
 	}
 	
-	public boolean getHaveWinner() {
-		return haveWinner;
+	public boolean getGameEnded() {
+		return gameEnded;
 	}
 	
-	public void setHaveWinner(boolean b) {
-		haveWinner = b;
+	public void setGameEnded(boolean b) {
+		gameEnded = b;
 	}
 	
 }

@@ -13,8 +13,9 @@ public class View{
         gui.setSize(new Dimension(500, 350));
         gui.setResizable(true);
         
-        addComponentsToPane(gui);
-		
+        addComponentsToPane(gui.getContentPane());
+        gui.pack();
+        gui.setVisible(true);
 	}
 	
 	public void addComponentsToPane(final Container pane) {
@@ -24,19 +25,21 @@ public class View{
         gamePanel.add(initGrid(game), BorderLayout.CENTER);
         
         JPanel options = new JPanel(new FlowLayout());
-        options.add(reset);
+		reset = new JButton("Reset");
+		options.add(reset);
         JPanel messages = new JPanel(new FlowLayout());
         messages.setBackground(Color.white);
+		playerturn = new JTextArea("Playing: X");
+		playerturn.setEditable(false);
+		messages.add(playerturn);
         
-        gui.add(gamePanel, BorderLayout.NORTH);
-        gui.add(options, BorderLayout.CENTER);
-        gui.add(messages, BorderLayout.SOUTH);
+        pane.add(gamePanel, BorderLayout.NORTH);
+        pane.add(options, BorderLayout.CENTER);
+        pane.add(messages, BorderLayout.SOUTH);
         
-		reset = new JButton("Reset");
-		playerturn = new JTextArea();
 		
 		
-		pane.add(gamePanel);
+		
 	}
 	
 	private JPanel initGrid(JPanel gameGrid) {
@@ -46,6 +49,7 @@ public class View{
 	for(int i = 0; i < 3; i++) {
 		for(int j = 0; j < 3; j++) {
 			buttons[i][j] = new JButton();
+			buttons[i][j].setPreferredSize(new Dimension(100,100));
 			grid.add(buttons[i][j]);
 		}
 	}
@@ -54,6 +58,9 @@ public class View{
 	
 	public JButton[][] getButtons() {
 		return buttons;
+	}
+	public JTextArea getPlayerTurnField() {
+		return playerturn;
 	}
 	
 }

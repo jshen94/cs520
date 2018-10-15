@@ -1,6 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 public class Controller implements ActionListener {
 	private Model model;
@@ -22,7 +23,7 @@ public class Controller implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(!model.getHaveWinner()) {
+		if(!model.getGameEnded()) {
 			int x = 0;
 			int y = 0;
 			JButton[][] buttons = view.getButtons();
@@ -37,8 +38,20 @@ public class Controller implements ActionListener {
 			model.placeSymbol(model.getPlayer(),x ,y);
 			buttons[x][y].setText(model.getSymbol(model.getPlayer()));
 			buttons[x][y].setEnabled(false);
-			model.incrementTurns();
-			model.switchPlayer();
+			if (model.checkBoard(x,y)) {
+				view.getPlayerTurnField().setText("Congratulations "+ model.getSymbol(model.getPlayer()) + " won!");
+				for(JButton[] b: buttons) {
+					for(JButton button : b) {
+						button.setEnabled(false);
+					}
+				}
+			}
+			else {
+				model.incrementTurns();
+				model.switchPlayer();
+				view.getPlayerTurnField().setText("Playing: "+ model.getSymbol(model.getPlayer()));
+			}
+
 		}
 	}
 	
