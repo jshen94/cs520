@@ -1,0 +1,16 @@
+CODE REVIEW
+
+1. A large amount of code is repeated in testing the state of the game after each move is made. Player 1 and Player 2 essentially use the same code for testing for a winner, but the code is repeated.
+To fix this I would create a seperate method for checking for a winner, and parameterize the inputs such that the method will be able to efficiently check for a winner.
+One way to do this would be to sum up the possible winning conditions, and if they equal a certain number then declare a winner.
+
+
+2. There is no encapsulation for testing, debugging and readability, the entire game is written into one class. 
+ To fix this, I would split the game into the three components for Model View and Controller, and also create classes for simpler, yet still important components such as the board and player classes.
+
+
+3. The game can only take one form of input, and is hard coded for these inputs. Player 1 is forced to be X, and Player 2 must be O. 
+To fix this, Player 1 could decide on which symbol they would prefer and then set Player 2's symbol accordingly.
+
+
+4. 
