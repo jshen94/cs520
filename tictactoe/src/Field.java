@@ -1,25 +1,27 @@
 
 public class Field {
-	private Symbol player;
+	private String value;
 	
 	
 	public Field() {
-		player = Symbol.NONE;
+		value = "";
 	}
 	
-	public Symbol getPlayer() {
-		return player;
+	public String getValue() {
+		return value;
+	}
+	public int computeValue() {
+		if(value == "X") {
+			return 1;
+		}
+		if(value == "O") {
+			return -1;
+		}
+		return 0;
+	}
+	public void setValue(String s) {
+		value = s;
 	}
 	
-	public void setPlayer(Symbol s) {
-		player = s;
-	}
-	
-	
-	public static enum Symbol {
-		X, O, NONE
-	}
-	
-		
 }
 
