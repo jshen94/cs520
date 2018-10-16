@@ -62,5 +62,8 @@ public class View{
 	public JTextArea getPlayerTurnField() {
 		return playerturn;
 	}
+	public JButton getReset() {
+		return reset;
+	}
 	
 }
