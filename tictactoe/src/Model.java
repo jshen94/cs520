@@ -1,4 +1,6 @@
-
+/*
+ * Contains functions to modify the board state and interpret the current state
+ */
 
 public class Model {
 	private int turnCounter;

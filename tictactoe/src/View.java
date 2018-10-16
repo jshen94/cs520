@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
-
+/*
+ * Displays the current state of the board, and also provides the buttons to click
+ */
 public class View{
     private JFrame gui;
     private JButton[][] buttons;

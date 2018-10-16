@@ -1,4 +1,6 @@
-
+/*
+ * Contains the mathematical logic for manipulating the board
+ */
 public class Board {
 	private Field[][] boardState;
 	public static final int DIMENSION = 3;

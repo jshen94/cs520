@@ -2,7 +2,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-
+/*
+ * Contain the listeners for the player to interact with, and sends the inputs to the Model
+ */
 public class Controller implements ActionListener {
 	private Model model;
 	private View view;
@@ -74,5 +76,44 @@ public class Controller implements ActionListener {
 				view.getPlayerTurnField().setText("Playing: "+ model.getSymbol(model.getPlayer()));
 			}
 		}
-	}	
+	}
+	//for testing purposes
+	public void makeMove(int x, int y) {
+		
+		JButton[][] buttons = view.getButtons();
+		model.placeSymbol(model.getPlayer(),x ,y);
+		buttons[x][y].setText(model.getSymbol(model.getPlayer()));
+		buttons[x][y].setEnabled(false);
+		
+		if (model.checkBoard(x,y)) {
+			if(model.getHasWinner()) {
+				view.getPlayerTurnField().setText("Congratulations "+ model.getSymbol(model.getPlayer()) + " won!");
+				for(JButton[] b: buttons) {
+					for(JButton button : b) {
+						button.setEnabled(false);
+					}
+				}
+			}
+			else {
+				view.getPlayerTurnField().setText("The game is a draw.");
+				for(JButton[] b: buttons) {
+					for(JButton button : b) {
+						button.setEnabled(false);
+					}
+				}
+			}
+		}
+		else {
+			model.incrementTurns();
+			model.switchPlayer();
+			view.getPlayerTurnField().setText("Playing: "+ model.getSymbol(model.getPlayer()));
+		}
+	}
+	
+	public Model getModel() {
+		return model;
+	}
+	public View getView() {
+		return view;
+	}
 }

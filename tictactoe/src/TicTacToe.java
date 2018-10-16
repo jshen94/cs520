@@ -1,11 +1,19 @@
 public class TicTacToe {
+	private static Controller controller;
+	
+	public TicTacToe() {
+		Model model = new Model();
+		View view = new View();
+		controller = new Controller(model, view);	
+	}
 	public static void main(String[] args) {
 		Model model = new Model();
 		View view = new View();
-		Controller controller = new Controller(model, view);
-		
-		
-		
+		controller = new Controller(model, view);		
+	}
+	
+	public Controller getController() {
+		return controller;
 	}
 }
 
